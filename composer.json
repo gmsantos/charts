@@ -1,0 +1,21 @@
+{
+    "name": "pcm/charts",
+    "description": "A prettier Fusioncharts library with Laravel support",
+	"license": "MIT",
+    "authors": [
+        {
+            "name": "gmsantosxl",
+            "email": "gabriel.ms1@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "~4"
+    },
+    "autoload": {
+         "psr-4": {
+            "Pcm\\Charts\\": "src/Pcm/Charts"
+        }
+    },
+    "minimum-stability": "stable"
+}
