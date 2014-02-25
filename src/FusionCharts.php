@@ -1002,9 +1002,11 @@ class FusionCharts{
 		   foreach($this->dataset as $part_type => $part_name){
 			   $partXML .="<dataset  " . $this->datasetParam[$part_type] . " >";
 			   foreach($this->dataset[$part_type] as $part_type1 => $part_name1){
+				   
+				   \Debugbar::info($part_name1);
 					   if($part_name1!=""){ 
 						 # Add elements 
-						 if($part_name1!="Array"){
+						 if(!is_array($part_name1)){
 						   $partXML .= $part_name1;
 						 }
 					   } 

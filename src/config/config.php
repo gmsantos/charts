@@ -59,7 +59,7 @@ return array(
 	'bgAngle'             => '270',
 	'borderColor'         => 'EBEBEB',
 	'borderThickness'     => 1,
-	'showBorder'          => 0,
+	'showBorder'          => 1,
 	'useRoundEdges'       => 1,
 	'legendIconScale'     => 2,
 	

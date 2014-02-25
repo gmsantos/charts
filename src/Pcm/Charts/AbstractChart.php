@@ -11,10 +11,9 @@ use Pcm\Charts\Libraries\ChartLibraryInterface;
 abstract class AbstractChart {
 
 	protected $chartLib;
-	protected $chartParams   = array();
-	protected $xAxisLabels   = array();
-	protected $dataSet       = array();
-	protected $dataSetParams = array();
+	protected $chartParams = array();
+	protected $xAxisLabels = array();
+	protected $dataMatrix = array();
 
 	public function __construct(ChartLibraryInterface $chartLib)
 	{
@@ -22,6 +21,13 @@ abstract class AbstractChart {
 		$this->chartParams = Config::get('charts::config');
 	}
 
+	abstract protected function prepareToRender();
+
+	public function setDataMatrix($dataMatrix)
+	{
+		$this->dataMatrix = $dataMatrix;
+	}
+	
 	public function insertTitle($title)
 	{
 		$this->chartParams['caption'] = $title;
@@ -41,12 +47,12 @@ abstract class AbstractChart {
 	{
 		$this->chartParams['yAxisName'] = $label;
 	}
-	
+
 	public function setSecondYAxisName($label)
 	{
 		$this->chartParams['yAxisName'] = $label;
 	}
-	
+
 	public function setChartParams(Array $params)
 	{
 		array_merge($this->chartParams, $params);
@@ -69,12 +75,6 @@ abstract class AbstractChart {
 		$this->prepareToRender();
 
 		return $this->chartLib->outputJSON();
-	}
-
-	protected function prepareToRender()
-	{
-		$this->chartLib->injectChartParams($this->chartParams);
-		$this->chartLib->addXAxisPoints($this->xAxisLabels);
 	}
 
 }
