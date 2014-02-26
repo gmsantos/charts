@@ -55,7 +55,7 @@ abstract class AbstractChart {
 
 	public function setChartParams(Array $params)
 	{
-		array_merge($this->chartParams, $params);
+		$this->chartParams = array_merge($this->chartParams, $params);
 	}
 
 	public function addXAxisPoints(Array $xAxisLabels)

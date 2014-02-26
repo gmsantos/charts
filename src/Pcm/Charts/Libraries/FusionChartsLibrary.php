@@ -28,9 +28,9 @@ class FusionChartsLibrary implements ChartLibraryInterface {
 		}
 	}
 
-	public function addDataset($datasetName, $params = "")
+	public function addDataset($datasetName, $params)
 	{
-		$this->fusionChart->addDataset($datasetName, $params);
+		$this->fusionChart->addDataset($datasetName, $this->convertDatasetArrayParamsToString($params));
 	}
 
 	public function addChartData($value)
@@ -40,12 +40,19 @@ class FusionChartsLibrary implements ChartLibraryInterface {
 
 	public function outputJSON()
 	{
-		// TODO: fusioncharts does not do this
+		// TODO
 	}
 
 	public function outputXML()
 	{
 		return $this->fusionChart->getXML();
+	}
+
+	private function convertDatasetArrayParamsToString($params)
+	{
+		$params = $this->fusionChart->FC_Transform($params, '{key}={value};');
+		
+		return $params;
 	}
 
 }

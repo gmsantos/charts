@@ -20,12 +20,14 @@ trait MultiSeriesTrait {
 		$this->datasetParams = $dataSetParams;
 	}
 	
-	public function addDataset($dataMatrix, $datasets, $datasetParams)
+	public function createDataSeries($dataMatrix, $datasets, $datasetParams)
 	{
 		foreach ($datasets as $key => $datasetName){
-			$params = isset($datasetParams[$key]) ? $datasetParams[$key] : '';
-			//\Debugbar::info($datasetName);
-			$this->chartLib->addDataset($datasetName, $params);
+			
+			// Make sure this dataset has params to inject
+			$dataSetParams = isset($datasetParams[$key]) ? $datasetParams[$key] : array();
+			
+			$this->chartLib->addDataset($datasetName, $dataSetParams);
 			foreach($dataMatrix[$key] as $value){
 				$this->chartLib->addChartData($value);
 			}

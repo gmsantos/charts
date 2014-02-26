@@ -20,7 +20,7 @@ class MultiSeriesChart extends AbstractChart{
 	{
 		$this->chartLib->injectChartParams($this->chartParams);
 		$this->chartLib->addXAxisPoints($this->xAxisLabels);
-		$this->addDataset($this->dataMatrix, $this->datasets, $this->datasetParams);
+		$this->createDataSeries($this->dataMatrix, $this->datasets, $this->datasetParams);
 	}
 
 }

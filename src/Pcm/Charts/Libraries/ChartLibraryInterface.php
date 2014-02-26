@@ -7,7 +7,7 @@
 interface ChartLibraryInterface {
 	public function injectChartParams($chartParams);
 	public function addXAxisPoints($xAxisLabels);
-	public function addDataset($datasetName, $params = "");
+	public function addDataset($datasetName, $params);
 	public function addChartData($value);
 	public function outputXML();
 	public function outputJSON();
