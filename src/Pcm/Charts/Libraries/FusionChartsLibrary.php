@@ -43,15 +43,29 @@ class FusionChartsLibrary implements ChartLibraryInterface {
 		// TODO
 	}
 
-	public function outputXML()
+	/**
+	 * Output chart data XML 
+	 * 
+	 * @param boolean $raw 
+	 * @return string
+	 */
+	public function outputXML($raw = false)
 	{
-		return $this->fusionChart->getXML();
+		if ($raw) {
+			return $this->fusionChart->getXML();
+		}
+		
+		// Output a BOM and xml encoding to XML
+		// http://docs.fusioncharts.com/charts/contents/advanced/special-chars/SpChar.html
+		return pack("C3", 0xef, 0xbb, 0xbf) 
+			. '<?xml version="1.0" encoding="utf-8" ?>' 
+			. $this->fusionChart->getXML();
 	}
 
 	private function convertDatasetArrayParamsToString($params)
 	{
 		$params = $this->fusionChart->FC_Transform($params, '{key}={value};');
-		
+
 		return $params;
 	}
 
