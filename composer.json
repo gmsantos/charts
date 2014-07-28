@@ -13,8 +13,8 @@
         "illuminate/support": "~4"
     },
     "autoload": {
-         "psr-4": {
-            "Pcm\\Charts\\": "src/Pcm/Charts"
+         "psr-0": {
+            "Pcm\\Charts\\": "src"
         }
     },
     "minimum-stability": "stable"

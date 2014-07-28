@@ -7,27 +7,27 @@ use Pcm\Charts\Libraries\FusionChartsLibrary;
  *
  * @author gamacsan
  */
-class MultiSeriesChart extends AbstractChart{
+class MultiSeriesChart extends AbstractChart {
 //	use Traits\MultiSeriesTrait;
-	
+
 	/**
 	 * Belongs to Traits\MultiSeriesTrait;
 	 * 
 	 * @var type 
 	 */
 	protected $datasets = array();
-	
+
 	/**
 	 * Belongs to Traits\MultiSeriesTrait;
 	 * 
 	 * @var type 
 	 */
 	protected $datasetParams = array();
-	
+
 	public function __construct()
 	{
 		$fusionChartsLibrary = new FusionChartsLibrary('MSCombi2D');
-		
+
 		parent::__construct($fusionChartsLibrary);
 	}
 
@@ -35,7 +35,7 @@ class MultiSeriesChart extends AbstractChart{
 	{
 		$this->chartLib->injectChartParams($this->chartParams);
 		$this->chartLib->addXAxisPoints($this->xAxisLabels);
-		$this->createDataSeries($this->dataMatrix, $this->datasets, $this->datasetParams);
+		$this->builtDataseries($this->dataArray, $this->datasets, $this->datasetParams);
 	}
 
 	/**
@@ -57,24 +57,26 @@ class MultiSeriesChart extends AbstractChart{
 	{
 		$this->datasetParams = $dataSetParams;
 	}
-	
+
 	/**
 	 * Belongs to Traits\MultiSeriesTrait;
 	 * 
 	 * @param type $dataSet
-	 */	
-	public function createDataSeries($dataMatrix, $datasets, $datasetParams)
+	 */
+	public function builtDataseries($dataArray, $datasets, $datasetParams)
 	{
-		foreach ($datasets as $key => $datasetName){
-			
+		foreach ($datasets as $key => $datasetName)
+		{
 			// Make sure this dataset has params to inject
-			$dataSetParams = isset($datasetParams[$key]) ? $datasetParams[$key] : array();
+			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : array();
 			
-			$this->chartLib->addDataset($datasetName, $dataSetParams);
-			foreach($dataMatrix[$key] as $value){
-				$this->chartLib->addChartData($value);
+			$this->chartLib->addDataset($datasetName, $datasetConfig);
+
+			foreach ($dataArray[$key] as $value)
+			{
+				$this->addChartData($value);
 			}
 		}
 	}
-	
+
 }

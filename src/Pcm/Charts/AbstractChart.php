@@ -13,7 +13,7 @@ abstract class AbstractChart {
 	protected $chartLib;
 	protected $chartParams = array();
 	protected $xAxisLabels = array();
-	protected $dataMatrix = array();
+	protected $dataArray = array();
 
 	public function __construct(ChartLibraryInterface $chartLib)
 	{
@@ -23,9 +23,9 @@ abstract class AbstractChart {
 
 	abstract protected function prepareToRender();
 
-	public function setDataMatrix($dataMatrix)
+	public function setDataArray($dataArray)
 	{
-		$this->dataMatrix = $dataMatrix;
+		$this->dataArray = $dataArray;
 	}
 	
 	public function insertTitle($title)
@@ -63,6 +63,11 @@ abstract class AbstractChart {
 		$this->xAxisLabels = $xAxisLabels;
 	}
 
+	public function addChartData($value)
+	{
+		$this->chartLib->addChartData($value);
+	}
+	
 	public function renderAsXML()
 	{
 		$this->prepareToRender();
@@ -76,5 +81,6 @@ abstract class AbstractChart {
 
 		return $this->chartLib->outputJSON();
 	}
+	
 
 }
