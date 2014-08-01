@@ -1,5 +1,5 @@
 {
-    "name": "pcm/charts",
+    "name": "gmsantosxl/laravel-fusioncharts",
     "description": "A wrapper for Fusioncharts and others charts libraries with Laravel support",
 	"license": "MIT",
     "authors": [
@@ -17,5 +17,5 @@
             "Pcm\\Charts\\": "src/Pcm/Charts"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }

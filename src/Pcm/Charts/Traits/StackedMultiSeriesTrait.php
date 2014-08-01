@@ -1,18 +1,14 @@
-<?php
-namespace Pcm\Charts\Traits;
+<?php namespace Pcm\Charts\Traits;
 
 /**
  * Description of StakedTrait
  *
  * @author gamacsan
  */
-trait StackedMultiSeriesTrait
-{
+trait StackedMultiSeriesTrait {
 
 	protected $datasets = array();
-
 	protected $datasetParams = array();
-
 	private $isMainDatasetInitialized = false;
 
 	public function setDataSet($dataSet)
@@ -31,31 +27,36 @@ trait StackedMultiSeriesTrait
 		{
 			// Make sure this dataset has params to inject
 			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : array();
-			
+
 			if (isset($datasetConfig['renderAs']) && $datasetConfig['renderAs'] == 'line')
 			{
-				unset($datasetConfig['renderAs']);
 				$this->chartLib->addDatasetMSLine($datasetName, $datasetConfig);
+				$addDataMethod = 'addMSLinesetData';
 			}
 			else
 			{
 				$this->initializeMainDataset();
 				$this->chartLib->addSubDatasetMS($datasetName, $datasetConfig);
+				$addDataMethod = 'addChartData';
 			}
-			
-			foreach ($dataArray[$key] as $value)
+
+			if (isset($dataArray[$key]))
 			{
-				$this->chartLib->addChartData($value);
+				foreach ($dataArray[$key] as $value)
+				{
+					$this->chartLib->{$addDataMethod}($value);
+				}
 			}
 		}
 	}
 
 	private function initializeMainDataset()
 	{
-		if (! $this->isMainDatasetInitialized)
+		if (!$this->isMainDatasetInitialized)
 		{
 			$this->chartLib->createMSStDataset();
 			$this->isMainDatasetInitialized = true;
 		}
 	}
+
 }
