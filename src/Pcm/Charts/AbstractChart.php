@@ -8,7 +8,7 @@ use Pcm\Charts\Libraries\ChartLibraryInterface;
  *
  * @author gamacsan
  */
-abstract class AbstractChart implements ChartInterface{
+abstract class AbstractChart {
 
 	protected $chartLib;
 	protected $chartParams = array();
