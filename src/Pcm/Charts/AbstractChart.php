@@ -45,11 +45,11 @@ abstract class AbstractChart {
 
 	public function setYAxisName($label)
 	{
-		if (!is_array($label)){
-			$this->chartParams['yAxisName'] = $label;
+		if (!is_array($label)) {
+			$this->chartParams['yAxisName'] = ucfirst($label);
 		} else {
-			$this->chartParams['pYAxisName'] = $label[0];
-			$this->chartParams['sYAxisName'] = $label[1];
+			$this->chartParams['pYAxisName'] = ucfirst($label[0]);
+			$this->chartParams['sYAxisName'] = ucfirst($label[1]);
 		}		
 	}
 
