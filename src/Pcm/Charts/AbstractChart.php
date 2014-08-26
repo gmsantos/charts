@@ -68,6 +68,11 @@ abstract class AbstractChart {
 		$this->chartLib->addChartData($value);
 	}
 	
+	public function addTrendLine($value, $label, $params)
+	{
+		$this->chartLib->addTrendLine($value, $label, $params);
+	}
+	
 	public function renderAsXML()
 	{
 		$this->prepareToRender();

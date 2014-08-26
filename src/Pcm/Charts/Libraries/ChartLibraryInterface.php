@@ -11,4 +11,5 @@ interface ChartLibraryInterface {
 	public function addChartData($value);
 	public function outputXML();
 	public function outputJSON();
+	public function addTrendLine($value, $label, $params);
 }
