@@ -7,8 +7,8 @@
  */
 trait StackedMultiSeriesTrait {
 
-	protected $datasets = array();
-	protected $datasetParams = array();
+	protected $datasets = [];
+	protected $datasetParams = [];
 	private $isMainDatasetInitialized = false;
 
 	public function setDataSet($dataSet)
@@ -26,7 +26,7 @@ trait StackedMultiSeriesTrait {
 		foreach ($datasets as $key => $datasetName)
 		{
 			// Make sure this dataset has params to inject
-			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : array();
+			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : [];
 
 			if (isset($datasetConfig['renderAs']) && $datasetConfig['renderAs'] == 'line')
 			{

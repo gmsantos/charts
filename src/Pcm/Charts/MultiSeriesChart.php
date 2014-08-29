@@ -15,14 +15,14 @@ class MultiSeriesChart extends AbstractChart {
 	 * 
 	 * @var type 
 	 */
-	protected $datasets = array();
+	protected $datasets = [];
 
 	/**
 	 * Belongs to Traits\MultiSeriesTrait;
 	 * 
 	 * @var type 
 	 */
-	protected $datasetParams = array();
+	protected $datasetParams = [];
 
 	public function __construct()
 	{
@@ -68,7 +68,7 @@ class MultiSeriesChart extends AbstractChart {
 		foreach ($datasets as $key => $datasetName)
 		{
 			// Make sure this dataset has params to inject
-			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : array();
+			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : [];
 			
 			$this->chartLib->addDataset($datasetName, $datasetConfig);
 

@@ -2,7 +2,7 @@
 
 // TODO: Docblocks and Logicaly organize params
 
-return array(
+return [
 	
 	/*
 	|--------------------------------------------------------------------------
@@ -79,4 +79,4 @@ return array(
 	'decimalSeparator'    => ',',
 	'thousandSeparator'   => '.',
 		
-);
+];

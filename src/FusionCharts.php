@@ -71,7 +71,7 @@ class FusionCharts{
 	var $setCounter;                # Set array counter 
 
 
-    # trendLines 
+    # trendLinezs 
     var $trendLines = array();      # trendLines array
 	var $tLineCounter;              # trendLines array counter
 

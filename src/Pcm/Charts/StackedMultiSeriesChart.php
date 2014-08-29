@@ -14,8 +14,8 @@ class StackedMultiSeriesChart extends AbstractChart {
 	 * Belongs to Traits\StackedMultiSeriesTrait
 	 */
 	
-	protected $datasets = array();
-	protected $datasetParams = array();
+	protected $datasets = [];
+	protected $datasetParams = [];
 	private $isMainDatasetInitialized = false;
 	
 	
@@ -52,7 +52,7 @@ class StackedMultiSeriesChart extends AbstractChart {
 		foreach ($datasets as $key => $datasetName)
 		{
 			// Make sure this dataset has params to inject
-			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : array();
+			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : [];
 
 			if (isset($datasetConfig['renderAs']) && $datasetConfig['renderAs'] == 'line')
 			{

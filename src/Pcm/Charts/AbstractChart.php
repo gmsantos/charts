@@ -11,9 +11,9 @@ use Pcm\Charts\Libraries\ChartLibraryInterface;
 abstract class AbstractChart {
 
 	protected $chartLib;
-	protected $chartParams = array();
-	protected $xAxisLabels = array();
-	protected $dataArray = array();
+	protected $chartParams = [];
+	protected $xAxisLabels = [];
+	protected $dataArray   = [];
 
 	public function __construct(ChartLibraryInterface $chartLib)
 	{
@@ -53,12 +53,12 @@ abstract class AbstractChart {
 		}		
 	}
 
-	public function setChartParams(Array $params)
+	public function setChartParams(array $params)
 	{
 		$this->chartParams = array_merge($this->chartParams, $params);
 	}
 
-	public function addXAxisPoints(Array $xAxisLabels)
+	public function addXAxisPoints(array $xAxisLabels)
 	{
 		$this->xAxisLabels = $xAxisLabels;
 	}
