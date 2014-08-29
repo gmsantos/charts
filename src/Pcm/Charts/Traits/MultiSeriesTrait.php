@@ -31,10 +31,12 @@ trait MultiSeriesTrait
 			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : [];
 			
 			$this->chartLib->addDataset($datasetName, $datasetConfig);
+
 			foreach ($dataArray[$key] as $value)
 			{
 				$this->addChartData($value);
 			}
 		}
 	}
+
 }
