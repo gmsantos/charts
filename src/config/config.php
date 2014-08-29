@@ -1,7 +1,5 @@
 <?php
 
-// TODO: Docblocks and Logicaly organize params
-
 return [
 	
 	/*
@@ -53,7 +51,7 @@ return [
 	'labelDisplay'        => 'auto',
 	'logoURL'             => '',
 	'logoPosition'        => '',
-	'bgColor'             => 'D1D2DD ,F2F3FF',
+	'bgColor'             => 'D1D2DD, F2F3FF',
 	'bgAlpha'             => '80, 100',
 	'bgRatio'             => '20, 80',
 	'bgAngle'             => '270',
