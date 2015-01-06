@@ -28,7 +28,8 @@ trait StackedMultiSeriesTrait {
 		{
 			if(is_array($datasetName)){
 				$this->isDatasetInitialized = false;
-				array_map([$this,'builtMsStackedDataseries'], $dataArray, $datasetName, $datasetParams);
+				$this->builtMsStackedDataseries($dataArray, $datasetName, $datasetParams);
+				continue;
 			}
 			
 			// Make sure this dataset has params to inject
