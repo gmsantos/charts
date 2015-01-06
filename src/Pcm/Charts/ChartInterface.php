@@ -1,9 +1,5 @@
-<?php
+<?php namespace Pcm\Charts;
 
-/**
- *
- * @author GAMACSAN
- */
 interface ChartInterface {
 	//put your code here
 }
