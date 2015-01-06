@@ -34,7 +34,7 @@ trait StackedMultiSeriesTrait {
 			// Make sure this dataset has params to inject
 			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : array();
 
-			$this->initializeMainDataset();
+			$this->initializeDataset();
 			
 			if (isset($datasetConfig['renderAs']) && $datasetConfig['renderAs'] == 'line')
 			{
@@ -49,7 +49,7 @@ trait StackedMultiSeriesTrait {
 
 			if (isset($dataArray[$key]))
 			{
-				$this->insertDataInDataset($dataArray[$key], $addMethod);
+				$this->insertDataInDataset($dataArray[$key], $addDataMethod);
 			}
 		}
 	}
@@ -63,7 +63,7 @@ trait StackedMultiSeriesTrait {
 		}
 	}
 
-	private function insertDataInDataset($dataArray, $addMethod)
+	private function insertDataInDataset($dataArray, $addDataMethod)
 	{
 		foreach ($dataArray as $value)
 		{
