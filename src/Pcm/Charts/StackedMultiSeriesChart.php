@@ -3,13 +3,13 @@
 use Pcm\Charts\Libraries\FusionChartsLibrary;
 
 /**
- * Description of StackedMultiSeriesChart
+ * Description of BasicChart
  *
  * @author gamacsan
  */
 class StackedMultiSeriesChart extends AbstractChart {
 	use Traits\StackedMultiSeriesTrait;
-
+	
 	public function __construct()
 	{
 		$fusionChartsLibrary = new FusionChartsLibrary('MSStackedColumn2DLineDY');
@@ -23,5 +23,5 @@ class StackedMultiSeriesChart extends AbstractChart {
 		$this->chartLib->addXAxisPoints($this->xAxisLabels);
 		$this->builtMsStackedDataseries($this->dataArray, $this->datasets, $this->datasetParams);
 	}
-	
+
 }

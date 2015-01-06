@@ -7,9 +7,9 @@
  */
 trait StackedMultiSeriesTrait {
 
-	protected $datasets = [];
-	protected $datasetParams = [];
-	private $isMainDatasetInitialized = false;
+	protected $datasets = array();
+	protected $datasetParams = array();
+	private $isDatasetInitialized = false;
 
 	public function setDataSet($dataSet)
 	{
@@ -21,46 +21,53 @@ trait StackedMultiSeriesTrait {
 		$this->datasetParams = $dataSetParams;
 	}
 
+
 	public function builtMsStackedDataseries($dataArray, $datasets, $datasetParams)
 	{
-		foreach ($datasets as $key => $datasetName) 
+		foreach ($datasets as $key => $datasetName)
 		{
-			// No data to insert, move on
-			if (!isset($dataArray[$key])) {
-				continue;
+			if(is_array($datasetName)){
+				$this->isDatasetInitialized = false;
+				array_map([$this,'builtMsStackedDataseries'], $dataArray, $datasetName, $datasetParams);
 			}
 			
 			// Make sure this dataset has params to inject
-			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : [];
+			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : array();
 
-			$addDataMethod = $this->chooseDataset($datasetName, $datasetConfig);
-
-			foreach ($dataArray[$key] as $value) 
+			$this->initializeMainDataset();
+			
+			if (isset($datasetConfig['renderAs']) && $datasetConfig['renderAs'] == 'line')
 			{
-				$this->chartLib->{$addDataMethod}($value);
+				$this->chartLib->addDatasetMSLine($datasetName, $datasetConfig);
+				$addDataMethod = 'addMSLinesetData';
+			}
+			else
+			{
+				$this->chartLib->addSubDatasetMS($datasetName, $datasetConfig);
+				$addDataMethod = 'addChartData';
+			}
+
+			if (isset($dataArray[$key]))
+			{
+				$this->insertDataInDataset($dataArray[$key], $addMethod);
 			}
 		}
 	}
-
-	private function chooseDataset($datasetName, $datasetConfig)
+	
+	private function initializeDataset()
 	{
-		if (isset($datasetConfig['renderAs']) && $datasetConfig['renderAs'] == 'line') {
-			$this->chartLib->addDatasetMSLine($datasetName, $datasetConfig);
-			$addDataMethod = 'addMSLinesetData';
-		} else {
-			$this->initializeMainDataset();
-			$this->chartLib->addSubDatasetMS($datasetName, $datasetConfig);
-			$addDataMethod = 'addChartData';
+		if (!$this->isDatasetInitialized)
+		{
+			$this->chartLib->createMSStDataset();
+			$this->isDatasetInitialized = true;
 		}
-
-		return $addDataMethod;
 	}
 
-	private function initializeMainDataset()
+	private function insertDataInDataset($dataArray, $addMethod)
 	{
-		if (!$this->isMainDatasetInitialized) {
-			$this->chartLib->createMSStDataset();
-			$this->isMainDatasetInitialized = true;
+		foreach ($dataArray as $value)
+		{
+			$this->chartLib->{$addDataMethod}($value);
 		}
 	}
 

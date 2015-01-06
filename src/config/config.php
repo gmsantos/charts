@@ -1,6 +1,8 @@
 <?php
 
-return [
+// TODO: Docblocks and Logicaly organize params
+
+return array(
 	
 	/*
 	|--------------------------------------------------------------------------
@@ -51,11 +53,11 @@ return [
 	'labelDisplay'        => 'auto',
 	'logoURL'             => '',
 	'logoPosition'        => '',
-	'bgColor'             => 'D1D2DD, F2F3FF',
+	'bgColor'             => 'F2F3FF, FFFFFF',
 	'bgAlpha'             => '80, 100',
 	'bgRatio'             => '20, 80',
 	'bgAngle'             => '270',
-	'borderColor'         => 'AAAAAA',
+	'borderColor'         => 'EBEBEB',
 	'borderThickness'     => 1,
 	'showBorder'          => 1,
 	'useRoundEdges'       => 1,
@@ -77,4 +79,4 @@ return [
 	'decimalSeparator'    => ',',
 	'thousandSeparator'   => '.',
 		
-];
+);

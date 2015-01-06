@@ -8,12 +8,12 @@ use Pcm\Charts\Libraries\ChartLibraryInterface;
  *
  * @author gamacsan
  */
-abstract class AbstractChart {
+abstract class AbstractChart implements ChartInterface{
 
 	protected $chartLib;
-	protected $chartParams = [];
-	protected $xAxisLabels = [];
-	protected $dataArray   = [];
+	protected $chartParams = array();
+	protected $xAxisLabels = array();
+	protected $dataArray = array();
 
 	public function __construct(ChartLibraryInterface $chartLib)
 	{
@@ -45,20 +45,20 @@ abstract class AbstractChart {
 
 	public function setYAxisName($label)
 	{
-		if (!is_array($label)) {
-			$this->chartParams['yAxisName'] = ucfirst($label);
-		} else {
-			$this->chartParams['pYAxisName'] = ucfirst($label[0]);
-			$this->chartParams['sYAxisName'] = ucfirst($label[1]);
-		}		
+		$this->chartParams['yAxisName'] = $label;
 	}
 
-	public function setChartParams(array $params)
+	public function setSecondYAxisName($label)
+	{
+		$this->chartParams['yAxisName'] = $label;
+	}
+
+	public function setChartParams(Array $params)
 	{
 		$this->chartParams = array_merge($this->chartParams, $params);
 	}
 
-	public function addXAxisPoints(array $xAxisLabels)
+	public function addXAxisPoints(Array $xAxisLabels)
 	{
 		$this->xAxisLabels = $xAxisLabels;
 	}
@@ -66,11 +66,6 @@ abstract class AbstractChart {
 	public function addChartData($value)
 	{
 		$this->chartLib->addChartData($value);
-	}
-	
-	public function addTrendLine($value, $label, $params)
-	{
-		$this->chartLib->addTrendLine($value, $label, $params);
 	}
 	
 	public function renderAsXML()
