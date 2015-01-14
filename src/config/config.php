@@ -75,6 +75,7 @@ return array(
 	'numberSuffix'        => '',
 	'numberPrefix'        => '',
 	'formatNumberScale'   => 1,
+	'sFormatNumberScale'  => 1, 
 	'decimalPrecision'    => 2,
 	'decimalSeparator'    => ',',
 	'thousandSeparator'   => '.',
