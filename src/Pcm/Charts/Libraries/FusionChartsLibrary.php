@@ -50,7 +50,15 @@ class FusionChartsLibrary implements ChartLibraryInterface
 	{
 		$this->fusionChart->addChartData($value);
 	}
-
+	
+	public function addTrendLine($value, $label, $params)
+	{
+		$trendLine = $this->trendRange($value);
+		$trendLine['displayvalue'] = $label;
+		
+		$this->fusionChart->addTrendLine($this->arrayParamsToString(array_merge($trendLine, $params)));
+	}
+		
 	public function __call($name, $arguments)
 	{
 		if (method_exists($this->fusionChart, $name))
@@ -103,5 +111,20 @@ class FusionChartsLibrary implements ChartLibraryInterface
 		$params = $this->fusionChart->FC_Transform($params, '{key}={value};');
 		
 		return $params;
+	}
+	
+	private function trendRange($value)
+	{
+		if (is_array($value))
+		{
+			$trendLine['startValue'] = $value[0];
+			$trendLine['endValue'] = $value[1];
+		}
+		else 
+		{
+			$trendLine['startValue'] = $value;
+		}
+		
+		return $trendLine;
 	}
 }
