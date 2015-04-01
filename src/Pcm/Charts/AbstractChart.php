@@ -45,12 +45,12 @@ abstract class AbstractChart implements ChartInterface{
 
 	public function setYAxisName($label)
 	{
-		$this->chartParams['yAxisName'] = $label;
-	}
-
-	public function setSecondYAxisName($label)
-	{
-		$this->chartParams['yAxisName'] = $label;
+		if(is_array($label)){
+			$this->chartParams['pYAxisName'] = $label[0];
+			$this->chartParams['sYAxisName'] = $label[1];
+		} else {
+			$this->chartParams['yAxisName'] = $label;
+		}
 	}
 
 	public function setChartParams(Array $params)
