@@ -15,7 +15,10 @@
 	"autoload": {
 		"psr-4": {
 			"Pcm\\Charts\\": "src/Pcm/Charts"
-		}
+		},
+		"files": [
+			"src/lib/FusionCharts.php"
+		]
 	},
 	"minimum-stability": "dev"
 }

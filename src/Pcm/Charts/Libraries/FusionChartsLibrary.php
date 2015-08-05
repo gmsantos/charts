@@ -1,7 +1,5 @@
 <?php namespace Pcm\Charts\Libraries;
 
-require_once __DIR__ . '/../../../FusionCharts.php';
-
 /**
  * Description of FusionChartsLibrary
  *
