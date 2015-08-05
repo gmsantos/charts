@@ -1,5 +1,4 @@
-<?php
-namespace Pcm\Charts\Libraries;
+<?php namespace Pcm\Charts\Libraries;
 
 require_once __DIR__ . '/../../../FusionCharts.php';
 
@@ -8,8 +7,7 @@ require_once __DIR__ . '/../../../FusionCharts.php';
  *
  * @author gamacsan
  */
-class FusionChartsLibrary implements ChartLibraryInterface
-{
+class FusionChartsLibrary implements ChartLibraryInterface {
 
 	protected $fusionChart;
 
@@ -25,8 +23,7 @@ class FusionChartsLibrary implements ChartLibraryInterface
 
 	public function injectChartParams($chartParams)
 	{
-		foreach ($chartParams as $param => $value)
-		{
+		foreach ($chartParams as $param => $value) {
 			$this->fusionChart->setChartParam($param, $value);
 		}
 	}
@@ -46,25 +43,27 @@ class FusionChartsLibrary implements ChartLibraryInterface
 		$this->fusionChart->addMSLineset($datasetName, $this->arrayParamsToString($params));
 	}
 
-	public function addChartData($value)
+	public function addChartData($value, $label = '', $params = [])
 	{
-		$this->fusionChart->addChartData($value);
+		if (!is_null($label)) {
+			$params['label'] = $label;
+		}
+
+		$this->fusionChart->addChartData($value, $this->arrayParamsToString($params));
 	}
-	
+
 	public function addTrendLine($value, $label, $params)
 	{
 		$trendLine = $this->trendRange($value);
 		$trendLine['displayvalue'] = $label;
-		
+
 		$this->fusionChart->addTrendLine($this->arrayParamsToString(array_merge($trendLine, $params)));
 	}
-		
+
 	public function __call($name, $arguments)
 	{
-		if (method_exists($this->fusionChart, $name))
-		{
-			switch (count($arguments))
-			{
+		if (method_exists($this->fusionChart, $name)) {
+			switch (count($arguments)) {
 				case 0:
 					return $this->fusionChart->{$name}();
 				case 1:
@@ -76,9 +75,7 @@ class FusionChartsLibrary implements ChartLibraryInterface
 				default:
 					throw new \Exception('Too much params on ' . get_class($this->fusionChart));
 			}
-		}
-		else
-		{
+		} else {
 			throw new \BadMethodCallException('Not Implemented Method on ' . get_class($this->fusionChart));
 		}
 	}
@@ -96,11 +93,10 @@ class FusionChartsLibrary implements ChartLibraryInterface
 	 */
 	public function outputXML($raw = false)
 	{
-		if ($raw)
-		{
+		if ($raw) {
 			return $this->fusionChart->getXML();
 		}
-		
+
 		// Output a BOM and xml header
 		// http://docs.fusioncharts.com/charts/contents/advanced/special-chars/SpChar.html
 		return pack("C3", 0xef, 0xbb, 0xbf) . '<?xml version="1.0" encoding="utf-8" ?>' . $this->fusionChart->getXML();
@@ -109,22 +105,20 @@ class FusionChartsLibrary implements ChartLibraryInterface
 	private function arrayParamsToString($params)
 	{
 		$params = $this->fusionChart->FC_Transform($params, '{key}={value};');
-		
+
 		return $params;
 	}
-	
+
 	private function trendRange($value)
 	{
-		if (is_array($value))
-		{
+		if (is_array($value)) {
 			$trendLine['startValue'] = $value[0];
 			$trendLine['endValue'] = $value[1];
-		}
-		else 
-		{
+		} else {
 			$trendLine['startValue'] = $value;
 		}
-		
+
 		return $trendLine;
 	}
+
 }

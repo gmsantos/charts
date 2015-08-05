@@ -9,9 +9,9 @@ namespace Pcm\Charts\Traits;
 trait MultiSeriesTrait
 {
 
-	protected $datasets = array();
+	protected $datasets = [];
 
-	protected $datasetParams = array();
+	protected $datasetParams = [];
 
 	public function setDataSet($dataSet)
 	{
@@ -28,7 +28,7 @@ trait MultiSeriesTrait
 		foreach ($datasets as $key => $datasetName)
 		{
 			// Make sure this dataset has params to inject
-			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : array();
+			$datasetConfig = isset($datasetParams[$key]) ? $datasetParams[$key] : [];
 			
 			$this->chartLib->addDataset($datasetName, $datasetConfig);
 			foreach ($dataArray[$key] as $value)
