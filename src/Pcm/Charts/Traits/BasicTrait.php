@@ -1,11 +1,11 @@
 <?php namespace Pcm\Charts\Traits;
 
-class BasicTrait {
+trait BasicTrait {
 
-	public function builtDataseries($dataArray)
+	public function builtDataset($dataArray)
 	{
-		foreach ($dataArray[$key] as $value) {
-			$this->addChartData($value);
+		foreach ($dataArray as $label => $value) {
+			$this->addChartData($value, $label);
 		}
 	}
 

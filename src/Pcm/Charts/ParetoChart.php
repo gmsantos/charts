@@ -23,7 +23,7 @@ class ParetoChart extends AbstractChart {
 	{
 		$this->chartLib->injectChartParams($this->chartParams);
 		$this->chartLib->addXAxisPoints($this->xAxisLabels);
-		$this->builtDataseries($this->dataArray);
+		$this->builtDataset($this->dataArray);
 	}
 
 
