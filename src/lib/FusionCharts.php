@@ -127,7 +127,7 @@ class FusionCharts{
 	 # FusionCharts Constructor
 	 # while creating FusionCharts object, the Constructor will initialize the object with values passed to it as arguments i.e.
 	 # chats parameters like chartType, width, height, chartID
-	 function FusionCharts($chartType="column2d",$width="400",$height="300",$chartID="",$isTransparent=""){
+	public function __construct($chartType="column2d",$width="400",$height="300",$chartID="",$isTransparent=""){
 		
 		  #Set mode to Transparent
 		  $this->wMode=$isTransparent;
