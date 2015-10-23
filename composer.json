@@ -1,10 +1,10 @@
 {
-	"name": "gmsantosxl/laravel-fusioncharts",
+	"name": "gmsantos/laravel-fusioncharts",
 	"description": "A wrapper for Fusioncharts and others charts libraries with Laravel support",
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "gmsantosxl",
+			"name": "gmsantos",
 			"email": "gabriel.ms1@hotmail.com"
 		}
 	],
